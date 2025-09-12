@@ -43,7 +43,7 @@ class GoalPublisher(Node):
         z = math.sin(yaw/2.0)
         w = math.cos(yaw/2.0)
 
-        msg = PoseStamped()          #The msg. which gets to the nav2 stack
+        msg = PoseStamped()          #The msg. which the nav2 stack receives
         msg.header.frame_id = frame
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.pose.position.x = x
