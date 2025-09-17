@@ -11,12 +11,12 @@ class GoalPublisher(Node):
         # publish to the same topic RViz uses
         self.pub = self.create_publisher(PoseStamped, '/goal_pose', 10)
 
-        # params (you can override with --ros-args -p xmin:=... etc.)
+        # params 
         self.declare_parameter('xmin', -2.0)
         self.declare_parameter('xmax',  2.0)
         self.declare_parameter('ymin', -2.0)
         self.declare_parameter('ymax',  2.0)
-        self.declare_parameter('period', 8.0)     # seconds between goals (set 0 to publish once)
+        self.declare_parameter('period', 8.0)     
         self.declare_parameter('frame_id', 'map') # must match Nav2 global frame
 
         period = self.get_parameter('period').get_parameter_value().double_value
@@ -38,12 +38,12 @@ class GoalPublisher(Node):
 
         x = random.uniform(xmin, xmax)
         y = random.uniform(ymin, ymax)
-        # pick a random yaw and convert to quaternion (z,w for 2D)
+        # picking a random yaw and convert to quaternion (z,w for 2D)
         yaw = random.uniform(-math.pi, math.pi)
         z = math.sin(yaw/2.0)
         w = math.cos(yaw/2.0)
 
-        msg = PoseStamped()          # The msg. which the nav2 stack receives
+        msg = PoseStamped()         
         msg.header.frame_id = frame
         msg.header.stamp = self.get_clock().now().to_msg()
         msg.pose.position.x = x
